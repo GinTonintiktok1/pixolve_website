@@ -1,0 +1,23 @@
+body::before {
+  content: "";
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 600px;
+  background-image: url('favicon.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0.15;
+  filter: blur(50px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Assicura che tutto il contenuto stia sopra */
+body > * {
+  position: relative;
+  z-index: 1;
+}
