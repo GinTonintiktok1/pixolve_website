@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en" data-color-scheme="dark">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Terms of Service – Pixolve</title>
+  <style>
+    @font-face {
+      font-family: 'FKGroteskNeue';
+      src: url('https://r2cdn.perplexity.ai/fonts/FKGroteskNeue.woff2') format('woff2');
+    }
+    :root {
+      --color-white: rgba(255,255,255,1);
+      --color-gray-200: rgba(245,245,245,1);
+      --color-gray-300: rgba(167,169,169,1);
+      --color-gray-400: rgba(119,124,124,1);
+      --color-charcoal-700: rgba(31,33,33,1);
+      --color-charcoal-800: rgba(38,40,40,1);
+      --color-slate-900: rgba(19,52,59,1);
+      --color-teal-300: rgba(50,184,198,1);
+      --color-teal-400: rgba(45,166,178,1);
+      --color-teal-800: rgba(41,150,161,1);
+      --color-gray-400-rgb: 119,124,124;
+      --color-teal-300-rgb: 50,184,198;
+      --color-gray-300-rgb: 167,169,169;
+      --color-gray-200-rgb: 245,245,245;
+      --color-background: var(--color-charcoal-700);
+      --color-surface: var(--color-charcoal-800);
+      --color-text: var(--color-gray-200);
+      --color-text-secondary: rgba(var(--color-gray-300-rgb),0.7);
+      --color-primary: var(--color-teal-300);
+      --color-primary-hover: var(--color-teal-400);
+      --color-secondary: rgba(var(--color-gray-400-rgb),0.15);
+      --color-border: rgba(var(--color-gray-400-rgb),0.3);
+      --color-card-border: rgba(var(--color-gray-400-rgb),0.2);
+      --font-family-base: 'FKGroteskNeue','Geist','Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+      --pixolve-gradient: linear-gradient(135deg,#0d9488 0%,#32B8C6 50%,#67e8f9 100%);
+      --pixolve-gradient-subtle: linear-gradient(135deg,rgba(13,148,136,0.15) 0%,rgba(50,184,198,0.1) 100%);
+      --radius-sm: 6px; --radius-base: 8px; --radius-md: 10px; --radius-lg: 12px;
+      --radius-xl: 20px; --radius-full: 9999px;
+      --space-4:4px;--space-6:6px;--space-8:8px;--space-10:10px;--space-12:12px;
+      --space-16:16px;--space-20:20px;--space-24:24px;--space-32:32px;
+      --space-48:48px;--space-64:64px;--space-80:80px;
+      --shadow-md: 0 4px 12px rgba(0,0,0,0.25);
+      --shadow-lg: 0 10px 30px rgba(0,0,0,0.35);
+      --duration-fast:150ms;--duration-normal:250ms;
+      --ease-standard:cubic-bezier(0.16,1,0.3,1);
+    }
+    *,*::before,*::after{box-sizing:border-box;}
+    html{font-family:var(--font-family-base);font-size:14px;line-height:1.5;
+      color:var(--color-text);background-color:var(--color-background);
+      -webkit-font-smoothing:antialiased;}
+    body{margin:0;padding:0;overflow-x:hidden;}
+    h1,h2,h3,h4,h5,h6{margin:0;font-weight:600;line-height:1.2;
+      letter-spacing:-0.01em;color:var(--color-text);}
+    p{margin:0 0 16px;}
+    a{color:var(--color-primary);text-decoration:none;
+      transition:color var(--duration-fast) var(--ease-standard);}
+    a:hover{color:var(--color-primary-hover);}
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;
+      display:flex;align-items:center;justify-content:space-between;
+      padding:16px 32px;background:rgba(31,33,33,0.85);
+      backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+      border-bottom:1px solid var(--color-card-border);}
+    .nav-logo{font-size:22px;font-weight:700;letter-spacing:-0.03em;
+      background:var(--pixolve-gradient);-webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;background-clip:text;text-decoration:none;}
+    .nav-links{display:flex;gap:32px;list-style:none;margin:0;padding:0;}
+    .nav-links a{color:var(--color-text-secondary);font-size:14px;
+      transition:color var(--duration-fast) var(--ease-standard);}
+    .nav-links a:hover{color:var(--color-text);}
+    .nav-cta{display:inline-flex;align-items:center;gap:8px;padding:8px 20px;
+      background:var(--pixolve-gradient);color:#0d1a1c !important;
+      font-weight:550;border-radius:var(--radius-full);text-decoration:none;
+      font-size:14px;transition:opacity .25s,transform .25s;}
+    .nav-cta:hover{opacity:.9;transform:translateY(-1px);}
+    .page-wrap{max-width:860px;margin:0 auto;padding:120px 24px 80px;}
+    .page-title{font-size:clamp(32px,5vw,52px);font-weight:700;
+      letter-spacing:-0.03em;margin-bottom:12px;}
+    .gradient-text{background:var(--pixolve-gradient);-webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;background-clip:text;}
+    .page-subtitle{font-size:16px;color:var(--color-text-secondary);
+      margin-bottom:48px;line-height:1.6;}
+    .section-block{background:var(--color-surface);border:1px solid var(--color-card-border);
+      border-radius:var(--radius-xl);padding:32px;margin-bottom:24px;
+      position:relative;overflow:hidden;}
+    .section-block::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;
+      background:var(--pixolve-gradient);}
+    .section-block h2{font-size:18px;font-weight:600;margin-bottom:16px;
+      color:var(--color-text);}
+    .section-block h3{font-size:15px;font-weight:600;margin-bottom:8px;
+      color:var(--color-text);}
+    .section-block p,.section-block li{font-size:14px;color:var(--color-text-secondary);
+      line-height:1.7;margin-bottom:8px;}
+    .section-block ul,.section-block ol{padding-left:20px;margin:8px 0 16px;}
+    .section-block li{margin-bottom:6px;}
+    .badge-date{display:inline-block;padding:4px 14px;background:rgba(50,184,198,0.1);
+      border:1px solid rgba(50,184,198,0.25);border-radius:var(--radius-full);
+      font-size:12px;color:var(--color-teal-300);margin-bottom:32px;}
+    footer{border-top:1px solid var(--color-card-border);padding:32px 24px;text-align:center;}
+    .footer-logo{font-size:20px;font-weight:700;background:var(--pixolve-gradient);
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+      background-clip:text;margin-bottom:12px;display:inline-block;}
+    .footer-tagline{font-size:12px;color:var(--color-text-secondary);margin-bottom:24px;}
+    .footer-links{display:flex;gap:24px;justify-content:center;flex-wrap:wrap;margin-bottom:24px;}
+    .footer-links a{font-size:12px;color:var(--color-text-secondary);}
+    .footer-links a:hover{color:var(--color-primary);}
+    .footer-copy{font-size:11px;color:rgba(119,124,124,0.5);}
+    @media(max-width:768px){
+      nav{padding:16px 20px;}
+      .nav-links{display:none;}
+      .page-wrap{padding:90px 16px 60px;}
+    }
+</style>
+</head>
+<body>
+  <nav>
+    <a href="index.html" class="nav-logo">Pixolve</a>
+    <ul class="nav-links">
+      <li><a href="index.html#how-it-works">How it works</a></li>
+      <li><a href="index.html#features">Features</a></li>
+      <li><a href="index.html#pricing">Pricing</a></li>
+    </ul>
+    <a href="index.html#download" class="nav-cta">↓ Download</a>
+  </nav>
+  <div class="page-wrap">
+    <span class="badge-date">Last updated: February 2026</span>
+    <h1 class="page-title"><span class="gradient-text">Terms of Service</span></h1>
+    <p class="page-subtitle">By downloading or using Pixolve, you agree to these terms. Please read them carefully.</p>
+
+    <div class="section-block">
+      <h2>1. Acceptance of Terms</h2>
+      <p>By accessing or using the Pixolve application (&ldquo;App&rdquo;), you agree to be bound by these Terms of Service and our <a href="privacy.html">Privacy Policy</a>. If you do not agree, please do not use the App.</p>
+    </div>
+
+    <div class="section-block">
+      <h2>2. Description of Service</h2>
+      <p>Pixolve provides AI-powered, step-by-step solutions to academic exercises submitted via photograph or text input. The App covers 11 subjects across 14 languages for high school and university students.</p>
+      <p>Solutions are generated by AI and are intended as a <strong>learning aid only</strong>. They may occasionally contain errors. Always verify important answers with a qualified teacher or textbook.</p>
+    </div>
+
+    <div class="section-block">
+      <h2>3. Eligibility</h2>
+      <ul>
+        <li>You must be at least 13 years old to use Pixolve.</li>
+        <li>If you are under 18, you confirm that a parent or legal guardian has reviewed and agreed to these Terms on your behalf.</li>
+        <li>You must provide accurate information during registration.</li>
+      </ul>
+    </div>
+
+    <div class="section-block">
+      <h2>4. Free Plan &amp; Subscriptions</h2>
+      <h3>Free Plan</h3>
+      <p>Free users receive 3 AI solves per day at no charge, with no credit card required. The daily counter resets at midnight (local time).</p>
+      <h3>Pro Monthly &mdash; &euro;5 / month</h3>
+      <p>Unlimited daily solves, priority processing. Billed monthly. Cancel anytime before the next billing date and you retain Pro access until the end of the paid period.</p>
+      <h3>Pro Annual &mdash; &euro;30 / year</h3>
+      <p>Unlimited daily solves, priority processing, at &euro;2.50/month equivalent. Billed once per year. Cancel anytime; no partial refunds for unused months.</p>
+      <h3>Billing &amp; Refunds</h3>
+      <p>All billing is processed by Apple (App Store) or Google (Play Store). Refund requests must be submitted directly to Apple or Google according to their respective policies. Pixolve has no access to your payment information.</p>
+    </div>
+
+    <div class="section-block">
+      <h2>5. Acceptable Use</h2>
+      <p>You agree <strong>not</strong> to:</p>
+      <ul>
+        <li>Use Pixolve to cheat in official exams, competitions, or graded assessments where AI assistance is prohibited.</li>
+        <li>Reverse-engineer, decompile, or attempt to extract the App&apos;s source code.</li>
+        <li>Submit content that is illegal, harmful, or infringes on third-party rights.</li>
+        <li>Use automated scripts, bots, or scraping tools against the App&apos;s API.</li>
+        <li>Share your account credentials with others.</li>
+      </ul>
+    </div>
+
+    <div class="section-block">
+      <h2>6. Intellectual Property</h2>
+      <p>All content, branding, UI, and AI models within Pixolve are the exclusive property of Pixolve / Christian Laino. The name &ldquo;Pixolve&rdquo; and its logo are protected intellectual property.</p>
+      <p>The step-by-step solutions generated for your submitted exercises are provided for your personal educational use. You may not redistribute or commercially exploit them.</p>
+    </div>
+
+    <div class="section-block">
+      <h2>7. Disclaimer of Warranties</h2>
+      <p>Pixolve is provided &ldquo;as is&rdquo; without warranties of any kind, express or implied. We do not guarantee that solutions are 100% accurate. We are not liable for academic consequences arising from incorrect AI outputs.</p>
+    </div>
+
+    <div class="section-block">
+      <h2>8. Limitation of Liability</h2>
+      <p>To the fullest extent permitted by law, Pixolve&apos;s total liability to you for any claim arising from use of the App shall not exceed the amount you paid for your current subscription period (or &euro;0 for free users).</p>
+    </div>
+
+    <div class="section-block">
+      <h2>9. Termination</h2>
+      <p>We reserve the right to suspend or terminate your account if you violate these Terms. You may delete your account at any time via the App settings or by contacting <a href="mailto:support@pixolve.app">support@pixolve.app</a>.</p>
+    </div>
+
+    <div class="section-block">
+      <h2>10. Governing Law</h2>
+      <p>These Terms are governed by the laws of the Republic of Italy. Any disputes shall be subject to the exclusive jurisdiction of the courts of Naples, Italy, unless applicable consumer protection laws in your country require otherwise.</p>
+    </div>
+
+    <div class="section-block">
+      <h2>11. Changes to These Terms</h2>
+      <p>We may update these Terms at any time. Continued use of the App after an update constitutes acceptance of the revised Terms. We will notify you of material changes via in-app notice.</p>
+    </div>
+
+    <div class="section-block">
+      <h2>12. Contact</h2>
+      <p>For legal inquiries: <a href="mailto:support@pixolve.app">support@pixolve.app</a> &mdash; or visit our <a href="contact.html">Contact page</a>.</p>
+    </div>
+  </div>
+  <footer>
+    <div class="footer-logo">Pixolve</div>
+    <p class="footer-tagline">Snap. Solve. Understand.</p>
+    <div class="footer-links">
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="terms.html">Terms of Service</a>
+      <a href="support.html">Support</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <p class="footer-copy">&copy; 2026 Pixolve. All rights reserved. Made with &#10084;&#65039; in Naples, Italy.</p>
+  </footer>
+</body>
+</html>

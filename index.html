@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en" data-color-scheme="dark">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Pixolve – Snap. Solve. Understand.</title>
+  <style>
+
+    @font-face {
+      font-family: 'FKGroteskNeue';
+      src: url('https://r2cdn.perplexity.ai/fonts/FKGroteskNeue.woff2') format('woff2');
+    }
+    :root {
+      --color-white: rgba(255,255,255,1);
+      --color-gray-200: rgba(245,245,245,1);
+      --color-gray-300: rgba(167,169,169,1);
+      --color-gray-400: rgba(119,124,124,1);
+      --color-charcoal-700: rgba(31,33,33,1);
+      --color-charcoal-800: rgba(38,40,40,1);
+      --color-slate-900: rgba(19,52,59,1);
+      --color-teal-300: rgba(50,184,198,1);
+      --color-teal-400: rgba(45,166,178,1);
+      --color-teal-800: rgba(41,150,161,1);
+      --color-gray-400-rgb: 119,124,124;
+      --color-teal-300-rgb: 50,184,198;
+      --color-gray-300-rgb: 167,169,169;
+      --color-gray-200-rgb: 245,245,245;
+      --color-background: var(--color-charcoal-700);
+      --color-surface: var(--color-charcoal-800);
+      --color-text: var(--color-gray-200);
+      --color-text-secondary: rgba(var(--color-gray-300-rgb),0.7);
+      --color-primary: var(--color-teal-300);
+      --color-primary-hover: var(--color-teal-400);
+      --color-secondary: rgba(var(--color-gray-400-rgb),0.15);
+      --color-border: rgba(var(--color-gray-400-rgb),0.3);
+      --color-card-border: rgba(var(--color-gray-400-rgb),0.2);
+      --font-family-base: 'FKGroteskNeue','Geist','Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+      --pixolve-gradient: linear-gradient(135deg,#0d9488 0%,#32B8C6 50%,#67e8f9 100%);
+      --pixolve-gradient-subtle: linear-gradient(135deg,rgba(13,148,136,0.15) 0%,rgba(50,184,198,0.1) 100%);
+      --radius-sm: 6px; --radius-base: 8px; --radius-md: 10px; --radius-lg: 12px;
+      --radius-xl: 20px; --radius-full: 9999px;
+      --space-4:4px;--space-6:6px;--space-8:8px;--space-10:10px;--space-12:12px;
+      --space-16:16px;--space-20:20px;--space-24:24px;--space-32:32px;
+      --space-48:48px;--space-64:64px;--space-80:80px;
+      --shadow-md: 0 4px 12px rgba(0,0,0,0.25);
+      --shadow-lg: 0 10px 30px rgba(0,0,0,0.35);
+      --duration-fast:150ms;--duration-normal:250ms;
+      --ease-standard:cubic-bezier(0.16,1,0.3,1);
+    }
+    *,*::before,*::after{box-sizing:border-box;}
+    html{font-family:var(--font-family-base);font-size:14px;line-height:1.5;
+      color:var(--color-text);background-color:var(--color-background);
+      -webkit-font-smoothing:antialiased;}
+    body{margin:0;padding:0;overflow-x:hidden;}
+    h1,h2,h3,h4,h5,h6{margin:0;font-weight:600;line-height:1.2;
+      letter-spacing:-0.01em;color:var(--color-text);}
+    p{margin:0 0 16px;}
+    a{color:var(--color-primary);text-decoration:none;
+      transition:color var(--duration-fast) var(--ease-standard);}
+    a:hover{color:var(--color-primary-hover);}
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;
+      display:flex;align-items:center;justify-content:space-between;
+      padding:16px 32px;background:rgba(31,33,33,0.85);
+      backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+      border-bottom:1px solid var(--color-card-border);}
+    .nav-logo{font-size:22px;font-weight:700;letter-spacing:-0.03em;
+      background:var(--pixolve-gradient);-webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;background-clip:text;text-decoration:none;}
+    .nav-links{display:flex;gap:32px;list-style:none;margin:0;padding:0;}
+    .nav-links a{color:var(--color-text-secondary);font-size:14px;
+      transition:color var(--duration-fast) var(--ease-standard);}
+    .nav-links a:hover{color:var(--color-text);}
+    .nav-cta{display:inline-flex;align-items:center;gap:8px;padding:8px 20px;
+      background:var(--pixolve-gradient);color:#0d1a1c !important;
+      font-weight:550;border-radius:var(--radius-full);text-decoration:none;
+      font-size:14px;transition:opacity .25s,transform .25s;}
+    .nav-cta:hover{opacity:.9;transform:translateY(-1px);}
+    .page-wrap{max-width:860px;margin:0 auto;padding:120px 24px 80px;}
+    .page-title{font-size:clamp(32px,5vw,52px);font-weight:700;
+      letter-spacing:-0.03em;margin-bottom:12px;}
+    .gradient-text{background:var(--pixolve-gradient);-webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;background-clip:text;}
+    .page-subtitle{font-size:16px;color:var(--color-text-secondary);
+      margin-bottom:48px;line-height:1.6;}
+    .section-block{background:var(--color-surface);border:1px solid var(--color-card-border);
+      border-radius:var(--radius-xl);padding:32px;margin-bottom:24px;
+      position:relative;overflow:hidden;}
+    .section-block::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;
+      background:var(--pixolve-gradient);}
+    .section-block h2{font-size:18px;font-weight:600;margin-bottom:16px;
+      color:var(--color-text);}
+    .section-block h3{font-size:15px;font-weight:600;margin-bottom:8px;
+      color:var(--color-text);}
+    .section-block p,.section-block li{font-size:14px;color:var(--color-text-secondary);
+      line-height:1.7;margin-bottom:8px;}
+    .section-block ul,.section-block ol{padding-left:20px;margin:8px 0 16px;}
+    .section-block li{margin-bottom:6px;}
+    .badge-date{display:inline-block;padding:4px 14px;background:rgba(50,184,198,0.1);
+      border:1px solid rgba(50,184,198,0.25);border-radius:var(--radius-full);
+      font-size:12px;color:var(--color-teal-300);margin-bottom:32px;}
+    footer{border-top:1px solid var(--color-card-border);padding:32px 24px;text-align:center;}
+    .footer-logo{font-size:20px;font-weight:700;background:var(--pixolve-gradient);
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+      background-clip:text;margin-bottom:12px;display:inline-block;}
+    .footer-tagline{font-size:12px;color:var(--color-text-secondary);margin-bottom:24px;}
+    .footer-links{display:flex;gap:24px;justify-content:center;flex-wrap:wrap;margin-bottom:24px;}
+    .footer-links a{font-size:12px;color:var(--color-text-secondary);}
+    .footer-links a:hover{color:var(--color-primary);}
+    .footer-copy{font-size:11px;color:rgba(119,124,124,0.5);}
+    @media(max-width:768px){
+      nav{padding:16px 20px;}
+      .nav-links{display:none;}
+      .page-wrap{padding:90px 16px 60px;}
+    }
+
+    .hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;
+      justify-content:center;text-align:center;padding:120px 24px 80px;
+      position:relative;overflow:hidden;}
+    .hero-bg{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:0;}
+    .hero-orb-1{position:absolute;width:600px;height:600px;border-radius:50%;
+      background:radial-gradient(circle,rgba(50,184,198,.18) 0%,transparent 70%);
+      top:-100px;left:50%;transform:translateX(-50%);filter:blur(40px);}
+    .hero-orb-2{position:absolute;width:400px;height:400px;border-radius:50%;
+      background:radial-gradient(circle,rgba(13,148,136,.15) 0%,transparent 70%);
+      bottom:50px;right:-100px;filter:blur(60px);}
+    .hero-orb-3{position:absolute;width:300px;height:300px;border-radius:50%;
+      background:radial-gradient(circle,rgba(103,232,249,.1) 0%,transparent 70%);
+      bottom:100px;left:-50px;filter:blur(50px);}
+    .hero-content{position:relative;z-index:1;max-width:800px;}
+    .hero-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 16px;
+      background:rgba(50,184,198,.12);border:1px solid rgba(50,184,198,.3);
+      border-radius:9999px;font-size:12px;color:var(--color-teal-300);
+      margin-bottom:32px;letter-spacing:.02em;font-weight:500;}
+    .hero-badge-dot{width:6px;height:6px;border-radius:50%;background:var(--color-teal-300);
+      animation:pulse-dot 2s infinite;}
+    @keyframes pulse-dot{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.5;transform:scale(.8);}}
+    .hero h1{font-size:clamp(40px,7vw,80px);font-weight:700;line-height:1.05;
+      letter-spacing:-.03em;margin-bottom:24px;color:var(--color-text);}
+    .hero h1 .gradient-text{background:var(--pixolve-gradient);-webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;background-clip:text;}
+    .hero-sub{font-size:clamp(16px,2.5vw,20px);color:var(--color-text-secondary);
+      max-width:560px;margin:0 auto 48px;line-height:1.6;}
+    .hero-buttons{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-bottom:64px;}
+    .btn-store{display:inline-flex;align-items:center;gap:12px;padding:12px 24px;
+      border-radius:var(--radius-lg);text-decoration:none;font-size:14px;
+      font-weight:500;transition:all .25s;cursor:pointer;min-width:180px;}
+    .btn-store-primary{background:var(--color-text);color:var(--color-background);}
+    .btn-store-primary:hover{filter:brightness(1.05);transform:translateY(-2px);box-shadow:var(--shadow-md);}
+    .btn-store-outline{background:transparent;color:var(--color-text);
+      border:1.5px solid var(--color-border);}
+    .btn-store-outline:hover{background:var(--color-secondary);
+      border-color:rgba(50,184,198,.5);transform:translateY(-2px);}
+    .btn-store-icon{font-size:24px;}
+    .btn-store-text small{display:block;font-size:10px;opacity:.6;font-weight:400;
+      line-height:1;margin-bottom:2px;}
+    .btn-store-text strong{font-size:15px;font-weight:600;display:block;line-height:1.2;}
+    .hero-stats{display:flex;gap:48px;justify-content:center;flex-wrap:wrap;}
+    .hero-stat{text-align:center;}
+    .hero-stat-number{font-size:28px;font-weight:700;background:var(--pixolve-gradient);
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+      background-clip:text;display:block;line-height:1.1;}
+    .hero-stat-label{font-size:12px;color:var(--color-text-secondary);margin-top:4px;}
+    .phone-section{padding:80px 24px;display:flex;justify-content:center;
+      position:relative;overflow:hidden;}
+    .phone-glow{position:absolute;width:500px;height:500px;border-radius:50%;
+      background:radial-gradient(circle,rgba(50,184,198,.2) 0%,transparent 70%);
+      top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;filter:blur(30px);}
+    @keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-12px);}}
+    .phone-wrap{animation:float 4s ease-in-out infinite;position:relative;z-index:1;}
+    .phone-mockup{width:260px;height:520px;background:#111;border-radius:40px;
+      border:2px solid rgba(255,255,255,.12);
+      box-shadow:0 40px 80px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.1),0 0 40px rgba(50,184,198,.25);
+      overflow:hidden;position:relative;}
+    .phone-notch{position:absolute;top:10px;left:50%;transform:translateX(-50%);
+      width:90px;height:22px;background:#111;border-radius:9999px;z-index:5;}
+    .phone-screen{width:100%;height:100%;
+      background:linear-gradient(160deg,#0f2a2e 0%,#0d1a1c 40%,#091a1f 100%);
+      display:flex;flex-direction:column;align-items:center;
+      padding:50px 16px 20px;position:relative;overflow:hidden;}
+    .phone-screen::before{content:'';position:absolute;top:-80px;left:50%;
+      transform:translateX(-50%);width:200px;height:200px;border-radius:50%;
+      background:radial-gradient(circle,rgba(50,184,198,.35) 0%,transparent 70%);filter:blur(20px);}
+    .phone-logo{font-size:18px;font-weight:700;background:var(--pixolve-gradient);
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+      background-clip:text;margin-bottom:16px;position:relative;z-index:1;}
+    .phone-cam-area{width:100%;height:160px;border-radius:16px;
+      background:rgba(50,184,198,.07);border:1.5px dashed rgba(50,184,198,.4);
+      display:flex;flex-direction:column;align-items:center;justify-content:center;
+      gap:8px;margin-bottom:14px;position:relative;z-index:1;}
+    .cam-icon{font-size:28px;}
+    .cam-label{font-size:10px;color:rgba(50,184,198,.8);font-weight:500;}
+    .phone-steps{width:100%;display:flex;flex-direction:column;gap:8px;position:relative;z-index:1;}
+    .phone-step{background:rgba(50,184,198,.08);border:1px solid rgba(50,184,198,.15);
+      border-radius:10px;padding:8px 12px;display:flex;align-items:center;gap:8px;}
+    .phone-step-num{width:20px;height:20px;border-radius:50%;background:var(--pixolve-gradient);
+      display:flex;align-items:center;justify-content:center;font-size:9px;
+      font-weight:700;color:#0d1a1c;flex-shrink:0;}
+    .phone-step-text{font-size:9px;color:rgba(167,169,169,.85);line-height:1.4;}
+    @keyframes scan{0%{top:10%;}100%{top:85%;}}
+    .scan-line{position:absolute;left:8px;right:8px;height:1.5px;
+      background:linear-gradient(90deg,transparent,rgba(50,184,198,.8),transparent);
+      animation:scan 2.5s ease-in-out infinite alternate;}
+    .section-sep{height:1px;background:linear-gradient(90deg,transparent,rgba(50,184,198,.3),transparent);
+      max-width:600px;margin:0 auto;}
+    section{padding:80px 24px;}
+    .section-inner{max-width:1080px;margin:0 auto;}
+    .section-label{display:block;font-size:12px;font-weight:600;color:var(--color-teal-300);
+      text-transform:uppercase;letter-spacing:.1em;margin-bottom:16px;text-align:center;}
+    .section-title{font-size:clamp(28px,4vw,44px);font-weight:700;letter-spacing:-.02em;
+      text-align:center;margin-bottom:16px;color:var(--color-text);}
+    .section-desc{text-align:center;color:var(--color-text-secondary);font-size:16px;
+      max-width:560px;margin:0 auto 64px;line-height:1.6;}
+    .steps-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px;}
+    .step-card{background:var(--color-surface);border:1px solid var(--color-card-border);
+      border-radius:var(--radius-xl);padding:32px;position:relative;overflow:hidden;
+      transition:transform .25s,box-shadow .25s;}
+    .step-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg),0 0 30px rgba(50,184,198,.1);}
+    .step-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;
+      background:var(--pixolve-gradient);}
+    .step-number{font-size:56px;font-weight:800;background:var(--pixolve-gradient);
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+      background-clip:text;line-height:1;margin-bottom:16px;opacity:.6;}
+    .step-icon{font-size:36px;margin-bottom:16px;}
+    .step-card h3{font-size:18px;font-weight:600;margin-bottom:12px;color:var(--color-text);}
+    .step-card p{color:var(--color-text-secondary);font-size:14px;line-height:1.6;margin:0;}
+    .features-section{background:rgba(50,184,198,.03);border-top:1px solid var(--color-card-border);
+      border-bottom:1px solid var(--color-card-border);}
+    .features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;}
+    .feature-card{background:var(--color-surface);border:1px solid var(--color-card-border);
+      border-radius:var(--radius-lg);padding:24px;display:flex;flex-direction:column;gap:12px;
+      transition:border-color .25s,transform .25s;}
+    .feature-card:hover{border-color:rgba(50,184,198,.4);transform:translateY(-2px);}
+    .feature-icon-wrap{width:44px;height:44px;border-radius:var(--radius-md);
+      background:rgba(50,184,198,.1);display:flex;align-items:center;
+      justify-content:center;font-size:22px;}
+    .feature-card h4{font-size:14px;font-weight:600;color:var(--color-text);}
+    .feature-card p{font-size:12px;color:var(--color-text-secondary);margin:0;line-height:1.6;}
+    .subjects-wrap{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:48px;}
+    .subject-pill{display:inline-flex;align-items:center;gap:8px;padding:10px 20px;
+      background:var(--color-surface);border:1px solid var(--color-card-border);
+      border-radius:9999px;font-size:14px;color:var(--color-text);font-weight:500;
+      transition:all .15s;}
+    .subject-pill:hover{border-color:rgba(50,184,198,.5);background:rgba(50,184,198,.08);
+      transform:translateY(-1px);}
+    .subject-pill .emoji{font-size:18px;}
+    .pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:24px;max-width:900px;margin:0 auto;}
+    .pricing-card{background:var(--color-surface);border:1px solid var(--color-card-border);
+      border-radius:var(--radius-xl);padding:32px;position:relative;overflow:hidden;
+      transition:transform .25s,box-shadow .25s;}
+    .pricing-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);}
+    .pricing-card.featured{border-color:rgba(50,184,198,.5);
+      box-shadow:0 0 0 1px rgba(50,184,198,.3),var(--shadow-md);}
+    .pricing-card.featured::after{content:'';position:absolute;inset:0;
+      background:linear-gradient(135deg,rgba(13,148,136,.15) 0%,rgba(50,184,198,.1) 100%);
+      pointer-events:none;}
+    .pricing-popular-badge{position:absolute;top:20px;right:20px;padding:4px 12px;
+      background:var(--pixolve-gradient);border-radius:9999px;font-size:11px;
+      font-weight:700;color:#0d1a1c;letter-spacing:.05em;text-transform:uppercase;z-index:1;}
+    .pricing-plan-name{font-size:12px;font-weight:600;text-transform:uppercase;
+      letter-spacing:.08em;color:var(--color-teal-300);margin-bottom:16px;position:relative;z-index:1;}
+    .pricing-price{display:flex;align-items:baseline;gap:4px;margin-bottom:8px;position:relative;z-index:1;}
+    .pricing-currency{font-size:20px;font-weight:600;color:var(--color-text);margin-top:6px;}
+    .pricing-amount{font-size:52px;font-weight:800;letter-spacing:-.04em;line-height:1;
+      background:var(--pixolve-gradient);-webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;background-clip:text;}
+    .pricing-amount.free-amount{background:none;-webkit-text-fill-color:var(--color-text);}
+    .pricing-period{font-size:14px;color:var(--color-text-secondary);margin-bottom:8px;position:relative;z-index:1;}
+    .pricing-saving{display:inline-block;padding:4px 10px;background:rgba(50,184,198,.1);
+      border:1px solid rgba(50,184,198,.2);border-radius:9999px;font-size:11px;
+      color:var(--color-teal-300);font-weight:500;margin-bottom:24px;position:relative;z-index:1;}
+    .pricing-divider{height:1px;background:var(--color-card-border);margin-bottom:24px;position:relative;z-index:1;}
+    .pricing-features{list-style:none;margin:0 0 32px;padding:0;display:flex;
+      flex-direction:column;gap:12px;position:relative;z-index:1;}
+    .pricing-features li{display:flex;align-items:flex-start;gap:10px;font-size:14px;
+      color:var(--color-text);line-height:1.4;}
+    .pricing-features li .check{color:var(--color-teal-300);font-size:14px;flex-shrink:0;margin-top:1px;}
+    .pricing-features li .cross{color:rgba(119,124,124,.4);font-size:14px;flex-shrink:0;margin-top:1px;}
+    .pricing-features li.muted{color:var(--color-text-secondary);}
+    .btn-pricing{display:block;width:100%;padding:12px 24px;border-radius:var(--radius-lg);
+      text-align:center;font-size:14px;font-weight:600;text-decoration:none;cursor:pointer;
+      border:none;transition:all .25s;position:relative;z-index:1;}
+    .btn-pricing.primary{background:var(--pixolve-gradient);color:#0d1a1c;}
+    .btn-pricing.primary:hover{opacity:.9;transform:translateY(-1px);}
+    .btn-pricing.outline{background:transparent;border:1.5px solid var(--color-border);color:var(--color-text);}
+    .btn-pricing.outline:hover{border-color:rgba(50,184,198,.4);background:var(--color-secondary);}
+    .cta-section{text-align:center;padding:80px 24px;position:relative;overflow:hidden;}
+    .cta-section::before{content:'';position:absolute;top:50%;left:50%;
+      transform:translate(-50%,-50%);width:700px;height:400px;border-radius:50%;
+      background:radial-gradient(ellipse,rgba(50,184,198,.12) 0%,transparent 70%);pointer-events:none;}
+    .cta-section h2{font-size:clamp(32px,5vw,56px);font-weight:700;letter-spacing:-.02em;
+      margin-bottom:20px;position:relative;}
+    .cta-section p{font-size:16px;color:var(--color-text-secondary);max-width:480px;
+      margin:0 auto 48px;position:relative;}
+    .cta-buttons{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;position:relative;}
+    @media(max-width:768px){
+      nav{padding:16px 20px;} .nav-links{display:none;}
+      .hero{padding-top:90px;} .hero-stats{gap:32px;}
+      section{padding:60px 20px;}
+    }
+    @media(max-width:480px){
+      .hero-buttons{flex-direction:column;align-items:center;}
+      .btn-store{min-width:200px;}
+      .pricing-grid{grid-template-columns:1fr;}
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="index.html" class="nav-logo">Pixolve</a>
+    <ul class="nav-links">
+      <li><a href="index.html#how-it-works">How it works</a></li>
+      <li><a href="index.html#features">Features</a></li>
+      <li><a href="index.html#pricing">Pricing</a></li>
+    </ul>
+    <a href="index.html#download" class="nav-cta">↓ Download</a>
+  </nav>
+
+  <section class="hero" id="download">
+    <div class="hero-bg">
+      <div class="hero-orb-1"></div>
+      <div class="hero-orb-2"></div>
+      <div class="hero-orb-3"></div>
+    </div>
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="hero-badge-dot"></span>
+        AI-powered &middot; 11 subjects &middot; 14 languages
+      </div>
+      <h1>Snap. Solve.<br/><span class="gradient-text">Understand.</span></h1>
+      <p class="hero-sub">Point your camera at any exercise and Pixolve instantly walks you through the solution &mdash; step by step.</p>
+      <div class="hero-buttons">
+        <a href="https://apps.apple.com" target="_blank" rel="noopener noreferrer" class="btn-store btn-store-primary">
+          <span class="btn-store-icon">&#63743;</span>
+          <span class="btn-store-text"><small>Download on the</small><strong>App Store</strong></span>
+        </a>
+        <a href="https://play.google.com" target="_blank" rel="noopener noreferrer" class="btn-store btn-store-outline">
+          <span class="btn-store-icon">&#9654;</span>
+          <span class="btn-store-text"><small>Get it on</small><strong>Google Play</strong></span>
+        </a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat"><span class="hero-stat-number">11</span><span class="hero-stat-label">Subjects supported</span></div>
+        <div class="hero-stat"><span class="hero-stat-number">14</span><span class="hero-stat-label">Languages</span></div>
+        <div class="hero-stat"><span class="hero-stat-number">3</span><span class="hero-stat-label">Free solves/day</span></div>
+        <div class="hero-stat"><span class="hero-stat-number">&#8734;</span><span class="hero-stat-label">Learning potential</span></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="phone-section">
+    <div class="phone-glow"></div>
+    <div class="phone-wrap">
+      <div class="phone-mockup">
+        <div class="phone-notch"></div>
+        <div class="phone-screen">
+          <div class="phone-logo">Pixolve</div>
+          <div class="phone-cam-area">
+            <div class="scan-line"></div>
+            <span class="cam-icon">&#128247;</span>
+            <span class="cam-label">TAP TO SNAP YOUR EXERCISE</span>
+          </div>
+          <div class="phone-steps">
+            <div class="phone-step"><div class="phone-step-num">1</div><div class="phone-step-text">Identify the type of equation: 2nd degree polynomial</div></div>
+            <div class="phone-step"><div class="phone-step-num">2</div><div class="phone-step-text">Apply the quadratic formula: x = (&#8722;b &plusmn; &#8730;&#916;) / 2a</div></div>
+            <div class="phone-step"><div class="phone-step-num">3</div><div class="phone-step-text">Calculate discriminant: &#916; = b&sup2; &minus; 4ac = 25 &gt; 0 &rarr; two real solutions</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-sep"></div>
+
+  <section id="how-it-works">
+    <div class="section-inner">
+      <span class="section-label">How it works</span>
+      <h2 class="section-title">Three steps to mastery</h2>
+      <p class="section-desc">No more staring at blank pages. Pixolve turns a photo into a guided learning experience in seconds.</p>
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-number">01</div>
+          <div class="step-icon">&#128247;</div>
+          <h3>Snap your exercise</h3>
+          <p>Open Pixolve and photograph any exercise &mdash; handwritten notes, printed pages, or textbook problems. Works for math, science, and humanities.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">02</div>
+          <div class="step-icon">&#129302;</div>
+          <h3>AI analyzes it instantly</h3>
+          <p>Our AI reads your problem, understands the context, and builds a complete, accurate solution tailored to the difficulty level.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">03</div>
+          <div class="step-icon">&#128161;</div>
+          <h3>Learn step by step</h3>
+          <p>Follow the guided breakdown at your own pace. Every step is explained clearly &mdash; so you don&apos;t just get the answer, you understand the <em>why</em>.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="features" class="features-section">
+    <div class="section-inner">
+      <span class="section-label">Features</span>
+      <h2 class="section-title">Everything you need to ace your studies</h2>
+      <p class="section-desc">Built for high school and university students who want to learn, not just copy answers.</p>
+      <div class="features-grid">
+        <div class="feature-card"><div class="feature-icon-wrap">&#128210;</div><h4>Step-by-step solutions</h4><p>Every answer comes with a full breakdown so you actually understand the method.</p></div>
+        <div class="feature-card"><div class="feature-icon-wrap">&#128218;</div><h4>11 subjects covered</h4><p>From calculus and chemistry to Latin and literature &mdash; scientific and humanistic.</p></div>
+        <div class="feature-card"><div class="feature-icon-wrap">&#127758;</div><h4>14 languages</h4><p>Pixolve works in your language. Switch any time and answers adapt automatically.</p></div>
+        <div class="feature-card"><div class="feature-icon-wrap">&#128247;</div><h4>Photo recognition</h4><p>Snap, upload, or type. Pixolve reads handwritten and printed exercises accurately.</p></div>
+        <div class="feature-card"><div class="feature-icon-wrap">&#9889;</div><h4>Instant results</h4><p>Solutions appear in seconds. Fast, reliable answers every single time.</p></div>
+        <div class="feature-card"><div class="feature-icon-wrap">&#128275;</div><h4>Free to try</h4><p>3 free solves every day, no credit card needed. Upgrade whenever you need more.</p></div>
+      </div>
+      <span class="section-label" style="margin-top:64px;display:block;">Subjects</span>
+      <div class="subjects-wrap">
+        <span class="subject-pill"><span class="emoji">&#10135;</span> Mathematics</span>
+        <span class="subject-pill"><span class="emoji">&#9883;&#65039;</span> Physics</span>
+        <span class="subject-pill"><span class="emoji">&#129514;</span> Chemistry</span>
+        <span class="subject-pill"><span class="emoji">&#129516;</span> Biology</span>
+        <span class="subject-pill"><span class="emoji">&#128208;</span> Geometry</span>
+        <span class="subject-pill"><span class="emoji">&#128202;</span> Statistics</span>
+        <span class="subject-pill"><span class="emoji">&#127963;&#65039;</span> Latin</span>
+        <span class="subject-pill"><span class="emoji">&#127760;</span> Languages</span>
+        <span class="subject-pill"><span class="emoji">&#128214;</span> Literature</span>
+        <span class="subject-pill"><span class="emoji">&#128196;</span> History</span>
+        <span class="subject-pill"><span class="emoji">&#127758;</span> Geography</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="pricing">
+    <div class="section-inner">
+      <span class="section-label">Pricing</span>
+      <h2 class="section-title">Simple, transparent plans</h2>
+      <p class="section-desc">Start for free. Upgrade when you need unlimited access.</p>
+      <div class="pricing-grid">
+        <div class="pricing-card">
+          <div class="pricing-plan-name">Free</div>
+          <div class="pricing-price"><span class="pricing-amount free-amount">0</span><span class="pricing-currency">&euro;</span></div>
+          <div class="pricing-period">forever</div>
+          <div class="pricing-divider"></div>
+          <ul class="pricing-features">
+            <li><span class="check">&#10003;</span> 3 solves per day</li>
+            <li><span class="check">&#10003;</span> All 11 subjects</li>
+            <li><span class="check">&#10003;</span> Step-by-step explanations</li>
+            <li><span class="check">&#10003;</span> All 14 languages</li>
+            <li class="muted"><span class="cross">&#10005;</span> Unlimited daily solves</li>
+            <li class="muted"><span class="cross">&#10005;</span> Priority processing</li>
+          </ul>
+          <a href="https://play.google.com" target="_blank" rel="noopener noreferrer" class="btn-pricing outline">Download free</a>
+        </div>
+        <div class="pricing-card featured">
+          <div class="pricing-popular-badge">Popular</div>
+          <div class="pricing-plan-name">Pro Monthly</div>
+          <div class="pricing-price"><span class="pricing-currency">&euro;</span><span class="pricing-amount">5</span></div>
+          <div class="pricing-period">per month</div>
+          <div class="pricing-divider"></div>
+          <ul class="pricing-features">
+            <li><span class="check">&#10003;</span> Unlimited daily solves</li>
+            <li><span class="check">&#10003;</span> All 11 subjects</li>
+            <li><span class="check">&#10003;</span> Step-by-step explanations</li>
+            <li><span class="check">&#10003;</span> All 14 languages</li>
+            <li><span class="check">&#10003;</span> Priority processing</li>
+            <li><span class="check">&#10003;</span> Cancel anytime</li>
+          </ul>
+          <a href="https://apps.apple.com" target="_blank" rel="noopener noreferrer" class="btn-pricing primary">Get Pro Monthly</a>
+        </div>
+        <div class="pricing-card">
+          <div class="pricing-plan-name">Pro Annual</div>
+          <div class="pricing-price"><span class="pricing-currency">&euro;</span><span class="pricing-amount">30</span></div>
+          <div class="pricing-period">per year</div>
+          <span class="pricing-saving">Save 50% vs monthly</span>
+          <div class="pricing-divider"></div>
+          <ul class="pricing-features">
+            <li><span class="check">&#10003;</span> Unlimited daily solves</li>
+            <li><span class="check">&#10003;</span> All 11 subjects</li>
+            <li><span class="check">&#10003;</span> Step-by-step explanations</li>
+            <li><span class="check">&#10003;</span> All 14 languages</li>
+            <li><span class="check">&#10003;</span> Priority processing</li>
+            <li><span class="check">&#10003;</span> Best value &mdash; &euro;2.50/month</li>
+          </ul>
+          <a href="https://apps.apple.com" target="_blank" rel="noopener noreferrer" class="btn-pricing primary">Get Pro Annual</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <div class="section-inner">
+      <h2>Ready to stop struggling?<br/><span class="gradient-text">Download Pixolve now.</span></h2>
+      <p>Join students worldwide who are learning smarter with AI-guided solutions &mdash; free to start, forever.</p>
+      <div class="cta-buttons">
+        <a href="https://apps.apple.com" target="_blank" rel="noopener noreferrer" class="btn-store btn-store-primary">
+          <span class="btn-store-icon">&#63743;</span>
+          <span class="btn-store-text"><small>Download on the</small><strong>App Store</strong></span>
+        </a>
+        <a href="https://play.google.com" target="_blank" rel="noopener noreferrer" class="btn-store btn-store-outline">
+          <span class="btn-store-icon">&#9654;</span>
+          <span class="btn-store-text"><small>Get it on</small><strong>Google Play</strong></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-logo">Pixolve</div>
+    <p class="footer-tagline">Snap. Solve. Understand.</p>
+    <div class="footer-links">
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="terms.html">Terms of Service</a>
+      <a href="support.html">Support</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <p class="footer-copy">&copy; 2026 Pixolve. All rights reserved. Made with &#10084;&#65039; in Naples, Italy.</p>
+  </footer>
+</body>
+</html>
